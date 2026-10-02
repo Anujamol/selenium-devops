@@ -1,12 +1,14 @@
 package com.amazon.tests;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class AmazonTest {
 
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	public void amazonTest() throws InterruptedException {
 		// TODO Auto-generated method stub
 
 
