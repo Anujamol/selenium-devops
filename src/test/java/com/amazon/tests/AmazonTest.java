@@ -1,6 +1,6 @@
 package com.amazon.tests;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
