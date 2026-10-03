@@ -1,37 +1,47 @@
+
 package com.amazon.tests;
 
-import org.testng.annotations.Test;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AmazonTest {
 
-	@Test
-	public void amazonTest() throws InterruptedException {
-		// TODO Auto-generated method stub
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
 
+        // Connect to Selenium Grid
+        ChromeOptions options = new ChromeOptions();
 
-		WebDriver driver = new EdgeDriver();
-	        driver.get("https://www.amazon.in/s?k=laptop");
+        WebDriver driver = new RemoteWebDriver(
+                new URL("http://localhost:4444"),
+                options
+        );
 
-	        System.out.println("Amazon search page opened");
+        // Open Amazon laptop search page
+        driver.get("https://www.amazon.in/s?k=laptop");
 
-	        System.out.println("Page Title: " + driver.getTitle());
-	        
-	        boolean productFound = driver.findElements(By.cssSelector("[data-component-type='s-search-result']")).size() > 0;
+        System.out.println("Amazon search page opened");
+        System.out.println("Page Title: " + driver.getTitle());
 
-	        if (productFound) {
-	            System.out.println("PASS: Amazon products are displayed");
-	        } else {
-	            System.out.println("FAIL: No products found");
-	        }
+        // Check whether products are displayed
+        boolean productFound = driver.findElements(
+                By.cssSelector("[data-component-type='s-search-result']")
+        ).size() > 0;
 
-	        Thread.sleep(5000);
+        if (productFound) {
+            System.out.println("PASS: Amazon products are displayed");
+        } else {
+            System.out.println("FAIL: No products found");
+        }
 
-	        driver.quit();
-		
-		
-	}
+        Thread.sleep(5000);
 
+        // Close browser
+        driver.quit();
+    }
 }
+
